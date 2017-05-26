@@ -76,7 +76,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/password_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/prompt_password"
@@ -112,7 +112,7 @@
             android:layout_height="wrap_content">
 
             <AutoCompleteTextView
-                android:id="@+id/tel"
+                android:id="@+id/tel_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/prompt_phone"
@@ -131,7 +131,8 @@
             android:text="@string/action_sign_in_short"
             android:textColor="@color/colorOrange"
             android:textSize="25dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="OnRegister"/>
 
     </LinearLayout>
 </LinearLayout>
