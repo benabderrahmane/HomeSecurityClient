@@ -43,7 +43,8 @@ public class RegisterActivity extends AppCompatActivity {
         else {
             BackGroundWorker bw = new BackGroundWorker(this);
             bw.execute(type, name.getText().toString(), mail.getText().toString(), password.getText().toString(), phone.getText().toString());
-            SystemClock.sleep(3000);
+            Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
+            startActivity(intent);
         }
     }
 }

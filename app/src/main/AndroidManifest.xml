@@ -32,7 +32,9 @@
         <activity
             android:name=".LogInActivity"
             android:label="@string/title_activity_log_in"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AddCameraActivity" />
+        <activity android:name=".ParamModifyActivity"></activity>
     </application>
 
 </manifest>

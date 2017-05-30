@@ -28,6 +28,7 @@ public class BackGroundWorker extends AsyncTask<String, Void, String> {
     Context context;
     AlertDialog alertDialog;
     String finaleResult = "";
+    String idUser = "-1";
 
     public BackGroundWorker(Context ctx) {
         context = ctx;
@@ -117,6 +118,49 @@ public class BackGroundWorker extends AsyncTask<String, Void, String> {
                 e.printStackTrace();
             }
         }
+        else if (type.equals("AddCamera")) {
+            try {
+                String login_url = "http://192.168.56.1/android_app/add_camera.php";
+                String url_cam = params[1];
+                String name_cam = params[2];
+                String user_cam = params[3];
+                String pub_cam = params[4];
+
+                URL url = new URL(login_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.setDoOutput(true);
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                String data_url = URLEncoder.encode("url_cam", "UTF-8") + "=" + URLEncoder.encode(url_cam, "UTF-8") + "&" +
+                        URLEncoder.encode("name_cam", "UTF-8") + "=" + URLEncoder.encode(name_cam, "UTF-8")  + "&" +
+                        URLEncoder.encode("user_cam", "UTF-8") + "=" + URLEncoder.encode(user_cam, "UTF-8") + "&" +
+                        URLEncoder.encode("pub_cam", "UTF-8") + "=" + URLEncoder.encode(pub_cam, "UTF-8");
+                bufferedWriter.write(data_url);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+                String result = "";
+                String line = "";
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    result += line;
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                return result;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         return null;
     }
 
@@ -137,6 +181,10 @@ public class BackGroundWorker extends AsyncTask<String, Void, String> {
             alertDialog.setMessage("Register success !");
         else if (result.equals("registerOff"))
             alertDialog.setMessage("Register error !");
+        else if (result.equals("cameraAdd"))
+            alertDialog.setMessage("Camera saved !");
+        else if (result.equals("cameraOut"))
+            alertDialog.setMessage("Camera not saved !");
         else
             alertDialog.setMessage("Errors occurred while saving data" + result);
         alertDialog.show();

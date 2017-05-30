@@ -1,6 +1,7 @@
 package com.hsc.mobile.homesecurityclient;
 
 import android.content.Intent;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;

@@ -1,19 +1,12 @@
 package com.hsc.mobile.homesecurityclient;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
-
-import java.io.Console;
 
 public class LogInActivity extends AppCompatActivity {
 
@@ -31,10 +24,11 @@ public class LogInActivity extends AppCompatActivity {
 
     public void OnLogin(View view) {
         String type = "Login";
+        //Log.d("TAG", "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + information.getText().toString());
         BackGroundWorker bw = new BackGroundWorker(this);
         bw.execute(type, information.getText().toString(), password.getText().toString());
 
-        Intent intent = new Intent(getApplicationContext(), FirstUserActivity.class);
+        Intent intent = new Intent(getApplicationContext(), AddCameraActivity.class);
         startActivity(intent);
     }
 }
